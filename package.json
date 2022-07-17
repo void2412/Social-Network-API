@@ -1,0 +1,25 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void2412/Social-Network-API.git"
+  },
+  "author": "Chi Hieu Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/void2412/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/void2412/Social-Network-API#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  }
+}
