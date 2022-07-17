@@ -47,11 +47,10 @@ function deleteUser(req, res){
 			res.status(404).json({error: 'User not found'})
 		}
 		else{
-			console.log(user)
 			Thought.deleteMany({_id: {$in: user.thoughts}})
+			.then(()=> res.json({message: 'User and its thoughts deleted'}))
 		}
 	})
-	.then(()=> res.json({message: 'User and its thoughts deleted'}))
 	.catch((err) => res.status(500).json(err))
 }
 
