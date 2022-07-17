@@ -7,7 +7,7 @@ const connectString = process.env.MONGODB_URI || process.env.local_uri
 
 connect(connectString,{
 	useNewUrlParser: true,
-	useUnifiedUrlParser: true
+	useUnifiedTopology: true
 })
 
 module.exports = connection
