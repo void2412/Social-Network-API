@@ -27,7 +27,7 @@ function addUser(req, res){
 function editUser(req, res){
 	User.findOneAndUpdate(
 		{ _id: req.params.userId},
-		{...req.body},
+		{$set: req.body},
 		{new: true},
 		(err, result) => {
 			if(result){
@@ -51,4 +51,33 @@ function deleteUser(req, res){
 	.catch((err) => res.status(500).json(err))
 }
 
-module.exports = {getAllUser, getSingleUser, addUser, editUser, deleteUser}
+
+function addFriend(req, res){
+	User.findOneAndUpdate(
+		{_id: req.params.userId},
+		{$addToSet: {friends: req.params.friendId}},
+		{runValidators: true, new:true}
+	)
+	.then((user)=>{
+		!user
+		? res.status(404).json({error: 'User not found'})
+		: res.status(200).json(user)
+	})
+	.catch((err) => res.status(500).json(err))
+}
+
+function removeFriend(req, res){
+	User.findOneAndUpdate(
+        {_id: req.params.userId},
+        {$pull: {friends: req.params.friendId}},
+		{runValidators: true, new:true}
+	)
+	.then((user)=>{
+		!user
+		 ? res.status(404).json({error: 'User not found'})
+		 : res.status(200).json(user)
+	})
+	.catch((err) => res.status(500).json(err))
+}
+
+module.exports = {getAllUser, getSingleUser, addUser, editUser, deleteUser, addFriend, removeFriend}
